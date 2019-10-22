@@ -1,0 +1,143 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izabrane grupe</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body onload="myFunction()">
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form class="izabrane_form">
+        {% csrf_token %}
+        <label class="naslov">Izabrane grupe: </label>
+        <div class="iznad">
+        <div class="godine_levo">
+        <label>Godina studija</label>
+        <select id="select_godina" onchange="myFunction()">
+            <option value="sve">sve godine</option>
+            {% for sem in semestri %}
+                <option value="{{ sem.id }}">{{ sem.skolska_godina_pocetak }}/{{ sem.skolska_godina_kraj }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <br>
+
+        <div class="smer_desno">
+        <label>Smer: </label>
+        <div class="radio_div">
+        <div class="radio_button"><input type="radio" name="smer" id="svi" value="svi" onclick="myFunction()" checked><label style="color: rgba(255, 174, 0, 1);">svi</label></div>
+            <div class="radio_button"><input type="radio" name="smer" id="RN" value="RN" onclick="myFunction()"><label style="color: rgba(255, 174, 0, 1);">RN</label></div>
+            <div class="radio_button"><input type="radio" name="smer" id="RI" value="RI" onclick="myFunction()"><label style="color: rgba(255, 174, 0, 1);">RI</label></div>
+        </div>
+        </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="scroll">
+        <table id="table">
+        <thead>
+        <tr>
+            <th>Oznaka</th>
+            <th>Semestar</th>
+            <th>Kapacitet</th>
+            <th>Smer</th>
+            <th>Aktivna</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for grupa in lista_grupa %}
+            <tr>
+                <td><a href="{% url 'detalji_grupe' grupa.oznaka_grupe %}">{{ grupa.oznaka_grupe}}</a></td>
+                <td>{{ grupa.oznaka_semestra }}</td>
+                <td>{{ grupa.kapacitet }}</td>
+                <td>{{ grupa.smer }}</td>
+                <td>{{ grupa.aktivna }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+    </form>
+
+    <script>
+        function myFunction() {
+            var select_godina, smer, selected_smer, i, table, tr, td, semestri_json, izabrane_json, izabrana_godina;
+
+            select_godina = document.getElementById('select_godina');
+            smer = document.getElementsByName('smer');
+
+            for (i = 0; i < smer.length; i++){
+                if (smer[i].checked){
+                    selected_smer = smer[i].value;
+                }
+            }
+
+            table = document.getElementById('table');
+            tr = table.getElementsByTagName('tr');
+
+            semestri_json = {{ semestri_json|safe }}
+            izabrane_json = {{ izabrane_json|safe }}
+
+            izabrana_godina = select_godina.value;
+            for (i = 1; i < tr.length; i++){
+                td = tr[i].getElementsByTagName('td')[3];
+                if (td) {
+                    td = td.textContent || td.innerText;
+                    if (selected_smer == 'svi' && izabrana_godina == 'sve') {
+                        tr[i].style.display = "";
+                    } else if (selected_smer == 'svi'){
+                        if (izabrane_json[i-1].fields.za_semestar == izabrana_godina){
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                        //ovde je bilo koji smer
+                        //odredjena godina
+                    } else if (izabrana_godina == 'sve'){
+                        if (td == selected_smer){
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                        //ovde je bilo koja godina
+                        //odredjeni smer
+                    } else {
+                        if (td == selected_smer && izabrane_json[i-1].fields.za_semestar == izabrana_godina){
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                        //ovde su oba odredjena
+                    }
+                }
+            }
+
+        }
+    </script>
+
+</body>
+</html>

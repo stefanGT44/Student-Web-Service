@@ -1,0 +1,24 @@
+{% if nastavnici %}
+<table>
+<thead>
+<tr>
+<th>Ime</th>
+<th>Prezime</th>
+<th>Zvanje</th>
+<th>Korisnicko ime</th>
+</tr>
+</thead>
+<tbody>
+{% for n in nastavnici %}
+<tr>
+<td>{{ n.ime }}</td>
+    <td><a href="{% url 'nastavnik' n.nalog.username %}">{{ n.prezime}}</a></td>
+<td>{{ n.zvanje }}</td>
+<td>{{ n.nalog.username }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>Nema nastavnika u bazi</p>
+{% endif %}

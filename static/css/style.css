@@ -1,0 +1,1118 @@
+html {
+	height: 100%;
+}
+
+body {
+ background-image: url("test.png");
+	font-family: "Courier New", Times, serif;
+	height: 100%;
+}
+
+form {
+	border-radius: 15px;
+    width: 14%;
+	background: rgba(0,0,0,0.6);
+	margin: auto;
+	margin-top: 15%;
+	padding: 25px;
+	text-align: center;
+}
+
+h1 {
+	color: white;
+	margin-bottom: 10%;
+}
+
+a {
+	color: rgb(232, 117, 255);
+}
+
+form input {
+	font-family: "Courier New", Times, serif;
+  background: rgba(0,0,0,0.3);
+	border: none;
+  width: 85%;
+  margin: auto;
+	margin-top: 6px;
+	margin-bottom: 15px;
+	display: block;
+	padding: 10px;
+	cursor: text;
+	outline: none;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+}
+
+input[type="text"] {
+	color: white;
+}
+
+input[type="password"] {
+	color: white;
+}
+
+form input:hover {
+	background: rgba(0,0,0,0.5);
+}
+
+form input:focus {
+	background: rgba(0,0,0,0.5);
+}
+
+form input[type="submit"] {
+	margin-top: 5%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 40%;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+	background: rgba(46, 178, 255, 0.5);
+	color: white;
+}
+
+form input[type="submit"]:active {
+	background: white;
+	color: black;
+}
+
+form label {
+	color: white;
+}
+
+.navbar-default {
+	font-family: "Courier New", Times, serif;
+	color: rgba(52, 143, 217, 1);
+	background-color: rgba(0, 0, 0, 0.3); !important;
+}
+
+.navbar-default .navbar-brand{
+	color: #53bcff;
+}
+
+.navbar-default .navbar-brand:hover{
+	color: #e9b03f;
+}
+
+.navbar-default li a {
+	color: white;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.navbar-default li a:hover {
+	color: rgb(255, 165, 0);
+}
+
+#raspored {
+	background-color: rgba(0, 0, 0, 0.5); !important;
+	width: 55%;
+	height: 88%;
+	margin: 2%;
+	padding: 2%;
+	padding-top: 1%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	float: left;
+}
+
+.naslov {
+	font-family: "Courier New", Times, serif;
+	font-size: 48px;
+	color: white;
+	text-shadow:1px 1px 20px #fff, 1px 1px 20px #fff;
+	margin-bottom: 2%;
+}
+
+#raspored table {
+	font-family: "Courier New", Times, serif;
+	width: 100%;
+	color: white;
+}
+
+.scroll {
+	height: 90%;
+	width: 100%;
+	overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	padding: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 174, 0, 0.3);
+	border-radius: 5px;
+	margin: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 174, 0, 0.5);
+}
+
+#raspored table td{
+	padding: 10px;
+}
+
+
+#raspored table th {
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: rgba(255, 174, 0, 0.8);
+}
+
+#obavestenja {
+	background-color: rgba(0, 0, 0, 0.5); !important;
+	width: 39%;
+	height: 88%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-right: 2%;
+	padding: 2%;
+	padding-top: 1%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	float: right;
+}
+
+.obavestenje {
+	font-family: "Courier New", Times, serif;
+	background-color: rgba(145, 145, 145, 0.3);
+	border-radius: 10px;
+	border: 2px rgba(235, 180, 52, 0.9);
+	margin: 4%;
+	margin-bottom: 6%;
+	padding: 3%;
+	padding-bottom: 5%;
+	padding-left: 4%;
+	padding-right: 4%;
+}
+
+.obavestenje .treci_div {
+	width: 100%;
+	background-color: black;
+	margin-top: 2%;
+	padding-bottomt: 50px;
+}
+
+.obavestenje label {
+	color: rgba(255, 174, 0, 1);
+	font-weight: bold;
+}
+
+.obavestenje a {
+	float: left;
+	margin-top: -5px;
+	color: rgba(132, 217, 207, 1);
+}
+
+.obavestenje a:hover {
+	color: rgba(203, 129, 204, 1);
+}
+
+.obavestenje .posted {
+	float: right;
+}
+
+.textArea {
+	display:inline-block;
+    width: 100%;
+	color: white;
+}
+
+.search_div {
+	font-family: "Courier New", Times, serif;
+	background-color: rgba(52, 111, 173, 0.2);
+	width: 100%;
+	padding: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display:flex;
+	align-items: center;
+	font-family: "Courier New", Times, serif;
+}
+
+.search_div label {
+	color: rgba(255, 174, 0, 1);
+	margin-right: 10px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.search_div select {
+	color: rgba(255, 174, 0, 1);
+}
+
+#raspored input {
+  background: rgba(0,0,0,0.3);
+	border: none;
+  	width: 30%;
+	height: 34px;
+	padding: 10px;
+	cursor: text;
+	outline: none;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+}
+
+select {
+	background: rgba(0,0,0,0.3);
+	border: none;
+  	width: 30%;
+	height: 34px;
+	cursor: text;
+	outline: none;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+	color: white;
+}
+
+select option:disabled {
+	color: rgba(145, 145, 145, 1);
+}
+
+select option{
+	background-color: rgba(0, 0, 0, 0.6);
+	color: rgba(255, 174, 0, 1);
+}
+
+.obavestenje_form {
+	border-radius: 15px;
+    width: 22%;
+	background: rgba(0,0,0,0.6);
+	margin: auto;
+	margin-top: 8%;
+	padding: 25px;
+	text-align: center;
+	font-family: "Courier New", Times, serif;
+}
+
+textarea {
+	font-family: "Courier New", Times, serif;
+  background: rgba(0,0,0,0.3);
+	border: none;
+  width: 100%;
+  margin: auto;
+	margin-top: 6px;
+	margin-bottom: 15px;
+	min-height: 20%;
+	display: block;
+	padding: 10px;
+	cursor: text;
+	outline: none;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+	color: white;
+}
+
+input[type="file"] {
+	color: white;
+}
+
+.obavestenje_form input[type="submit"] {
+	margin-top: 5%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 30%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+form input[type="submit"]:hover {
+	background: rgba(46, 178, 255, 0.5);
+	color: white;
+}
+
+form input[type="submit"]:active {
+	background: white;
+	color: black;
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+
+[type="file"] + label {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: rgba(255, 174, 0, 1);
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: rgba(179, 179, 179, 0.4);
+}
+
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
+}
+
+.import_kol_form {
+	border-radius: 15px;
+    width: 22%;
+	background: rgba(0,0,0,0.6);
+	margin: auto;
+	margin-top: 8%;
+	padding: 25px;
+	text-align: center;
+	font-family: "Courier New", Times, serif;
+}
+
+.import_kol_form .naslov {
+	margin-bottom: 10%;
+}
+
+.import_kol_form input[type="text"] {
+	height: 34px;
+}
+
+.import_kol_form input[type="submit"] {
+	margin-top: 5%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 30%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+.ispravka_import_form {
+	margin: auto;
+	padding: 0;
+	width: 100%;
+	height: 80%;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: "Courier New", Times, serif;
+}
+
+.greske_levi {
+	background-color: rgba(0, 0, 0, 0.5); !important;
+	width: 55%;
+	height: 88%;
+	margin: 2%;
+	padding: 2%;
+	padding-top: 1%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	float: left;
+	font-family: "Courier New", Times, serif;
+}
+
+.ispravke_desni {
+	background-color: rgba(0, 0, 0, 0.5); !important;
+	width: 39%;
+	height: 88%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-right: 2%;
+	padding: 2%;
+	padding-top: 1%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	float: right;
+	font-family: "Courier New", Times, serif;
+}
+
+.ispravka {
+	display: flow;
+	margin: auto;
+	align-items: center;
+	height: 34px;
+	text-align: center;
+}
+
+.ispravka input {
+	min-height: 34px;
+	height: 34px;
+}
+
+.ispravka_import_form input[type="submit"]{
+	background-color: rgba(166, 166, 166, 0.2);
+	height: 35px;
+	width: 20%;
+	margin-top: 2%;
+	line-height: 17px;
+}
+
+.ispravka label {
+	display: inline;
+	float: left;
+	margin-top: 5px;
+	width: 1%;
+}
+
+.donji_form {
+	border-radius: 15px;
+    width: 96%;
+	height: 15%;
+	margin: 2%;
+	margin-top: -1.0%;
+	margin-bottom: 0;
+	background: rgba(0,0,0,0.4);
+	text-align: center;
+	font-family: "Courier New", Times, serif;
+}
+
+.donji_form input[type="submit"] {
+	margin: auto;
+	width: 10%;
+	height: 35px;
+	line-height: 17px;
+	font-family: "Courier New", Times, serif;
+}
+
+.naslov2 {
+	font-family: "Courier New", Times, serif;
+	font-size: 36px;
+	color: white;
+	text-shadow:1px 1px 20px #fff, 1px 1px 20px #fff;
+	margin-bottom: 0.5%;
+}
+
+.greske_label {
+	float: left;
+	text-align: left;
+	width: 100%;
+}
+
+.site_form {
+	border-radius: 15px;
+    width: 25%;
+	background: rgba(0,0,0,0.6);
+	margin: auto;
+	margin-top: 8%;
+	padding: 25px;
+	text-align: center;
+	font-family: "Courier New", Times, serif;
+}
+
+.site_form select {
+	color: rgba(255, 174, 0, 1);
+}
+
+.site_form input[type="text"]{
+	width: 100%;
+	height: 34px;
+}
+
+.site_form input[type="submit"] {
+	margin-top: 5%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 30%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+.dodavanje_grupa_gornja {
+	border-radius: 15px;
+    width: 96%;
+	height: 25%;
+	margin: 2%;
+	background: rgba(0,0,0,0.5);
+	padding: 25px;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	font-family: "Courier New", Times, serif;
+}
+
+.dodavanje_grupa_gornja select {
+	width: 10%;
+	color: rgba(255, 174, 0, 1);
+	margin-bottom: 20px;
+}
+
+.dodavanje_grupa_gornja input[type="number"] {
+	height: 34px;
+	width: 20%;
+	margin-bottom: 0;
+	color: white;
+}
+
+.dodavanje_grupa_gornja input[type="submit"] {
+	margin-top: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 10%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+.dodavanje_grupa_donja {
+	border-radius: 15px;
+    width: 96%;
+	background: rgba(0,0,0,0.5);
+	margin: 2%;
+	height: 60%;
+	margin-top: 0;
+	text-align: center;
+	padding: 25px;
+}
+
+.vert_div {
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.vert_div input[type="submit"]{
+	margin-top: 5%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 10%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+.wrapper-div {
+	width: 100%;
+	height: 70%;
+	padding-top: 2%;
+}
+
+.levi_grupa {
+	font-family: "Courier New", Times, serif;
+	margin: auto;
+	margin-left: 25%;
+	width: 25%;
+	float: left;
+}
+
+.levi_grupa input[type="text"]{
+	width: 80%;
+	height: 34px;
+}
+
+.levi_grupa input[type="number"]{
+	width: 80%;
+	height: 34px;
+	color: white;
+}
+
+.levi_grupa .temp_label{
+	width: 25%;
+	margin-left: 1%;
+}
+
+.levi_grupa select{
+	width: 40%;
+	color: rgba(255, 174, 0, 1);
+}
+
+.desni_grupa {
+	font-family: "Courier New", Times, serif;
+	margin-right: 25%;
+	height: 100%;
+	width: 25%;
+	float: right;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.desni_grupa .scroll {
+	height: 100%;
+
+}
+
+.desni_grupa .scroll ul {
+	height: auto;
+}
+
+.desni_grupa ul {
+	list-style: none;
+}
+
+.desni_grupa ul li {
+	width: 100%;
+	margin: 5%;
+}
+
+.desni_grupa ul li label{
+	width: 80%;
+	float: left;
+}
+
+.desni_grupa ul li input{
+	width: 10%;
+	margin-right: 5%;
+	float: right;
+}
+
+.izabrane_form {
+	border-radius: 15px;
+    width: 25%;
+	height: 37%;
+	background: rgba(0,0,0,0.6);
+	margin: auto;
+	margin-top: 11%;
+	padding: 25px;
+	text-align: center;
+	font-family: "Courier New", Times, serif;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.izabrane_form .naslov {
+	margin-bottom: 8%;
+}
+
+.radio_div {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.radio_div .radio_button{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+
+.izabrane_form table {
+	font-family: "Courier New", Times, serif;
+	margin-top: 0;
+	width: 100%;
+	height: 32%;
+	color: white;
+	border: none;
+}
+
+.izabrane_form .scroll {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.izabrane_form table a {
+	color: rgb(222, 109, 212);
+}
+
+.izabrane_form table td{
+	padding: 10px;
+}
+
+
+.izabrane_form table th {
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: rgba(255, 174, 0, 0.8);
+}
+
+.izabrane_form .iznad {
+	width: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+}
+
+.izabrane_form .godine_levo {
+	float: left;
+	width: 40%;
+	margin-left: 10%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.izabrane_form .smer_desno {
+	float: right;
+	width: 40%;
+	margin-right: 10%;
+}
+
+.izabrane_form select {
+	color: rgba(255, 174, 0, 1);
+	min-width: 80%;
+}
+
+.nastavnik_raspored_form {
+	width: 60%;
+	height: 88%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2%;
+	font-family: "Courier New", Times, serif;
+}
+
+.nastavnik_raspored_form .naslov2 {
+	margin-bottom: 4%;
+}
+
+.nastavnik_raspored_form .radio_div {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.nastavnik_raspored_form .radio_div .radio_button{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.stud_gornji {
+	width: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.select_levo {
+	float: left;
+	width: 25%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-left: 25%;
+}
+
+.select_levo select {
+	color: rgba(255, 174, 0, 1);
+	width: 100%;
+}
+
+.radio_desno {
+	float: right;
+	width: 25%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-right: 25%;
+}
+
+.nastavnik_raspored_form .scroll {
+	overflow-x: auto;
+	height: 100%;
+	padding-top: 25px;
+}
+
+.nastavnik_raspored_form .scroll ul {
+	list-style: none;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nastavnik_raspored_form .scroll ul li{
+	margin-bottom: 5px;
+	display: inline;
+}
+
+.nastavnik_raspored_form .scroll ul label{
+	width: 50%;
+	float: left;
+}
+
+.stud_grupa {
+	width: 30%;
+	height: 50%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-top: 8%;
+	font-family: "Courier New", Times, serif;
+}
+
+.stud_grupa .scroll {
+	padding: 25px;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: white;
+}
+
+.slika_form {
+	width: 70%;
+	height: 88%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2%;
+	font-family: "Courier New", Times, serif;
+}
+
+.slika_form img {
+	height: 90%;
+	max-width: 95%;
+	margin: 2%;
+}
+
+.detalji_grupe_form {
+	width: 40%;
+	height: 50%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-top: 9%;
+	font-family: "Courier New", Times, serif;
+}
+
+.vert_grupa_div {
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.left_grupa_div {
+	width: 49%;
+	height: 100%;
+	float: left;
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 25px;
+	margin-right: 1%;
+}
+
+.right_grupa_div {
+	width: 49%;
+	height: 100%;
+	float: right;
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 25px;
+	margin-left: 1%;
+}
+
+.student_profile_form {
+	width: 70%;
+	height: 88%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2%;
+	font-family: "Courier New", Times, serif;
+}
+
+.student_profile_form img {
+	height: 65%;
+	max-width: 95%;
+	margin: 2%;
+}
+
+.student_profile_form input[type="submit"] {
+	margin-top: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 10%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+
+.izbor_grupe_form {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 96%;
+	height: 88%;
+	margin: 2%;
+	font-family: "Courier New", Times, serif;
+}
+
+.izbor_grupe_form input[type="number"]{
+	color: white;
+	height: 34px;
+}
+
+.izbor_grupe_form input[type="text"]{
+	height: 34px;
+}
+
+.izbor_grupe_form select{
+	color: rgba(255, 174, 0, 1);
+}
+
+.izbor_wrapper {
+	width: 100%;
+	height: 80%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.izbor_levi {
+	float: left;
+	width: 30%;
+	height: 90%;
+	margin-right: 2%;
+	margin-left: 18%;
+	padding-top: 3%;
+}
+
+.izbor_levi input[type="text"] {
+	width: 100%;
+}
+
+.izbor_levi input[type="number"] {
+	width: 100%;
+}
+
+.izbor_desni {
+	float: right;
+	width: 30%;
+	height: 90%;
+	margin-left: 2%;
+	margin-right: 18%;
+	padding-top: 3%;
+}
+
+.indeks_wrapper {
+	height: 34px;
+	width: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+}
+
+.indeks_wrapper select{
+	width: 18%;
+}
+
+.indeks_wrapper label{
+	width: 20%;
+	margin: 0;
+}
+
+.indeks_wrapper input[type="number"]{
+	width: 40%;
+	margin: 0;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+.izbor_levi .radio_div {
+	width: 60%;
+	margin: auto;
+}
+
+.novi_radio {
+	width: 70%;
+	margin: auto;
+	margin-top: 2%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.novi_rb {
+	margin: auto;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.izbor_desni .novi_radio {
+	margin-top: 1%;
+	width: 30%;
+}
+
+.izbor_desni ul {
+	list-style: none;
+	width: 100%;
+	height: 48%;
+	margin: auto;
+}
+
+.izbor_desni select {
+	width: 40%;
+}
+
+.izbor_desni .scroll {
+	background-color: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 48%;
+	margin: auto;
+}
+
+.izbor_desni ul li {
+	margin: 5%;
+}
+
+.izbor_desni ul li label{
+	width: 80%;
+	float: left;
+}
+
+.izbor_desni ul li input{
+	width: 10%;
+	margin-right: 5%;
+	float: right;
+}
+
+.novi_radio_2 {
+	width: 60%;
+	margin: auto;
+	margin-top: 2%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.izbor_grupe_form input[type="submit"] {
+	margin-top: 1%;
+	background: rgba(0, 0, 0, 0.5);
+	color: rgba(52, 143, 217, 1);
+	width: 10%;
+	height: 35px;
+	line-height: 17px;
+	cursor: pointer;
+	font-family: "Courier New", Times, serif;
+	font-weight: bold;
+}
+

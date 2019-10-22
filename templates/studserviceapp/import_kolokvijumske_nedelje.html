@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import kolokvijumske nedelje</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form method="post" enctype="multipart/form-data" class="import_kol_form">
+        {% csrf_token %}
+        <label class="naslov">Upload raspored polaganja:</label>
+        <label>Kolokvijumska nedelja: </label><br>
+        <input type="text" name="broj_nedelje" placeholder="uneti 1 ili 2...">
+        <label>Raspored csv attachment: </label><br>
+        <input type="file" name="raspored" id="file"><label for="file" />choose a file</label><br>
+        {% if uspesno %}
+            <label style="color: rgb(88, 204, 123)">Uspesno ucitan raspored polaganja</label>
+        {% endif %}
+        <label id="greska" style="color: rgb(196,81,94)">{{ greska }}</label>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        var file;
+            file = document.getElementById('file');
+            var label = file.nextElementSibling, labelVal = label.innerHTML;
+
+            file.addEventListener('change', function(e){
+                var fileName = '';
+
+                fileName = e.target.value.split('\\').pop();
+
+                if (fileName){
+                    label.innerHTML = fileName;
+                } else {
+                    label.innerHTML = labelVal;
+                }
+
+            })
+    </script>
+
+</body>
+</html>

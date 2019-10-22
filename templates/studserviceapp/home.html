@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="#" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <div id="raspored">
+        <label class="naslov">Raspored: </label>
+        <div class="search_div">
+            <label>Sort by: </label>
+            <select id="select_option" onselect="myFunction()">
+                {% for key in header %}
+                    <option value="{{ key }}">{{ key }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" placeholder="Enter keyword" id="search_field" onkeyup="myFunction()">
+        </div>
+        <div class="scroll">
+        <table id="table">
+            <thead>
+            <tr>
+                {% for item in header %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in raspored %}
+                <tr>
+                {% for field in row %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        </div>
+    </div>
+
+    <div id="obavestenja">
+        <label class="naslov">Obavestenja: </label>
+        <div class="scroll">
+            {%  for obv in obavestenja %}
+                <div class="obavestenje">
+                    <label>{{ obv.datum_postavljanja }}</label>
+                    <div contentEditable="true" class="textArea">{{ obv.tekst }}</div>
+                    <div class="treci_div">
+                    {% if obv.fajl != 'null'%}
+                    <a href="{{ obv.fajl.url }}" download="{{ obv.fajl.name }}" style="align-items: flex-start">
+                        <img src="{% static '/css/file1.png' %}" width="40" height="35">
+                        {{ obv.fajl.name }}
+                    </a>
+                    {% endif %}
+                    <label class="posted">{{ obv.postavio.ime }} {{ obv.postavio.prezime }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+    function myFunction(){
+        var input, filter, table, tr, td, i, txtValue, option, header, index;
+        input = document.getElementById('search_field');
+        option = document.getElementById('select_option');
+        filter = input.value.toUpperCase();
+        table = document.getElementById('table');
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++){
+            td = tr[i].getElementsByTagName("td")[option.selectedIndex];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1){
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+
+</body>
+
+</html>

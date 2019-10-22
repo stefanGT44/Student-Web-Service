@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form method="post" enctype="multipart/form-data" class="student_profile_form">
+        {% csrf_token %}
+        <label class="naslov2">{{ student.ime }} {{ student.prezime }}</label>
+`       <label>smer: {{ student.smer }}</label>
+        <label>broj indeksa: {{ student.broj_indeksa }}</label>
+        <label>godina upisa: {{ student.godina_upisa }}</label>
+        <label>grupa: {{ student.grupa.oznaka_grupe }}</label>
+        {% if student.slika %}
+            <img src="{{ student.slika.url }}"/><br>
+        {% endif %}
+        <input type="file" name="slika" id="file"><label for="file" />choose a file</label>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        var file;
+            file = document.getElementById('file');
+            var label = file.nextElementSibling, labelVal = label.innerHTML;
+
+            file.addEventListener('change', function(e){
+                var fileName = '';
+
+                fileName = e.target.value.split('\\').pop();
+
+                if (fileName){
+                    label.innerHTML = fileName;
+                } else {
+                    label.innerHTML = labelVal;
+                }
+
+            })
+    </script>
+
+</body>
+</html>

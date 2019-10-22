@@ -1,0 +1,194 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izbor grupe</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body onload="myFunction()">
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form action=" {% url 'sacuvaj_grupu' %}" method="post" onsubmit="return myFunction2();" class="izbor_grupe_form">
+        {% csrf_token %}
+        <label class="naslov2">Izbor grupe: </label>
+        <input type="hidden" name="studentId" value="{{ student.id }}">
+
+        <div class="izbor_wrapper">
+
+        <div class="izbor_levi">
+
+        <div class="indeks_wrapper">
+        <label>Index: </label>
+        <select name="smer">
+            <option selected="selected">{{ student.smer }}</option>
+            <option value="RN">RN</option>
+            <option value="RI">RI</option>
+        </select>
+        <input type="number" name="broj_indeksa" value="{{ student.broj_indeksa }}">
+        <select name="godina">
+            <option selected="selected">{{ student.godina_upisa }}</option>
+            {% for sem in godine %}
+                <option value={{ sem }}>{{ sem }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <br>
+
+
+        <label>Ime: </label>
+        <input type="text" name="ime" value="{{ student.ime }}">
+        <br>
+
+        <label>Prezime: </label>
+        <input type="text" name="prezime" value="{{ student.prezime }}">
+        <br>
+
+        <label>Broj do sada ukupno ostvarenih ESPB: </label>
+        <input type="number" name="ostvareni_ ESPB" placeholder="Uneti broj...">
+        <br>
+
+        <label>Skolske {{ poslednji_semestar.skolska_godina_pocetak }}/{{ poslednji_semestar.skolska_godina_kraj }} godine upisujem ESPB: </label>
+        <input type="number" name="upisani_ ESPB" placeholder="Uneti broj...">
+        <br>
+
+        <label>Broj do sada polozenih ispita: </label>
+        <input type="number" name="polozeni_ispiti" placeholder="Uneti broj...">
+        <br>
+
+        <label>Semestar: </label>
+        <div class="novi_radio">
+        {% if  poslednji_semestar.vrsta == 'parni' %}
+            <div class="novi_rb"><input type="radio" id="2" name="semestar" value="2" checked onclick="myFunction()"><label for="2">2</label></div>
+            <div class="novi_rb"><input type="radio" id="4" name="semestar" value="4" onclick="myFunction()"><label for="4">4</label></div>
+            <div class="novi_rb"><input type="radio" id="6" name="semestar" value="6" onclick="myFunction()"><label for="6">6</label></div>
+            <div class="novi_rb"><input type="radio" id="8" name="semestar" value="8" onclick="myFunction()"><label for="8">8</label></div>
+        {% else %}
+            <div class="novi_rb"><input type="radio" id="1" name="semestar" value="1" checked onclick="myFunction()"><label for="1">1</label></div>
+            <div class="novi_rb"><input type="radio" id="3" name="semestar" value="3" onclick="myFunction()"><label for="3">3</label></div>
+            <div class="novi_rb"><input type="radio" id="5" name="semestar" value="5" onclick="myFunction()"><label for="5">5</label></div>
+            <div class="novi_rb"><input type="radio" id="7" name="semestar" value="7" onclick="myFunction()"><label for="7">7</label></div>
+        {% endif %}
+        </div>
+        <br>
+
+        </div>
+
+        <div class="izbor_desni">
+
+        <label>Prvi put upisuje semestar: </label>
+        <div class="novi_radio">
+            <div class="novi_rb"><input type="radio" id="Da" name="prvi_put" value=True checked><label for="Da">Da</label></div>
+            <div class="novi_rb"><input type="radio" id="Ne" name="prvi_put" value=False><label for="Ne">Ne</label></div>
+        </div>
+        <br>
+
+        <label>Grupa koju student bira: </label>
+        <select name="izabrana_grupa" id="select_grupe">
+            {% for grp in izborne_grupe %}
+                <option value={{ grp.oznaka_grupe }}>{{ grp.oznaka_grupe }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <br>
+        <label>Nepolozeni predmeti iz proteklih godina: </label>
+        <div class="scroll">
+        <ul>
+        {% for predmet in predmeti %}
+            <li><label>{{ predmet.naziv }} </label><input type="checkbox" name='lista' value="{{ predmet.naziv }}"></li>
+        {% endfor %}
+        </ul>
+        </div>
+        <br>
+        <br>
+
+        <label>Nacin placanja skolarine: </label>
+        <div class="novi_radio_2">
+            <div class="novi_rb"><input type="radio" id="Odjednom" name="skolarina" value="Odjednom" checked><label for="Odjednom">Odjednom</label></div>
+            <div class="novi_rb"><input type="radio" id="Na rate" name="skolarina" value="Na rate"><label for="Na rate">Na rate</label></div>
+            <div class="novi_rb"><input type="radio" id="Stipendista" name="skolarina" value="Stipendista"><label for="Stipendista">Stipendista</label></div>
+        </div>
+
+        </div>
+
+        </div>
+
+        {% if tip == 'uspeh' %}
+        <label style="color: rgb(88, 204, 123)" class="poruka">{{ messsage }}</label>
+        {% endif %}
+        {% if tip == 'greska' %}
+        <label style="color: rgb(196,81,94)" class="poruka">{{ messsage }}</label>
+        {% endif %}
+
+        <input type="submit" value="Sacuvaj">
+
+    </form>
+
+    <script>
+        function myFunction(){
+            var radio, checked, i, select_grupe, select_options, izborne_grupe_json, counter;
+            radio = document.getElementsByName('semestar');
+            for (i = 0; i < radio.length; i++){
+                if (radio[i].checked){
+                    checked = radio[i].value;
+                }
+            }
+
+            console.log(checked);
+
+            select_grupe = document.getElementById("select_grupe");
+            select_options = select_grupe.getElementsByTagName('option');
+            izborne_grupe_json = {{ izborne_grupe_json|safe }}
+
+            counter = 0;
+
+            for (i = 0; i < select_options.length; i++){
+                if (izborne_grupe_json[i].fields.oznaka_semestra == checked){
+                    select_options[i].style.display = "";
+                    select_grupe.value = select_options[i].value;
+                } else {
+                    counter++;
+                    select_options[i].style.display = "none";
+                }
+            }
+
+            select_grupe.disabled = false;
+            if (counter == select_options.length){
+                select_grupe.disabled = true;
+                select_grupe.value = "no groups";
+            }
+
+        }
+
+        function myFunction2() {
+            var select = document.getElementById("select_grupe");
+            if (select.disabled == true){
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>

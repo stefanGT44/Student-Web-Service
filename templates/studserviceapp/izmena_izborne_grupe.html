@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmena izborne grupe</title>
+</head>
+<body>
+    <h1>Izmena grupe {{ grupa.oznaka_grupe }}</h1>
+    <form action=" {% url 'sacuvaj_promene_izborne' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="grupa_id" value="{{ grupa.id }}">
+        <label>Oznaka grupe: </label>
+        <input type="text" name="oznaka_grupe" value={{ grupa.oznaka_grupe }}><br>
+        <label>Oznaka semestra: </label>
+        <select name="oznaka_semestra">
+                <option value="1" {% if grupa.oznaka_semestra == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if grupa.oznaka_semestra == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if grupa.oznaka_semestra == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if grupa.oznaka_semestra == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if grupa.oznaka_semestra == 5 %} selected {% endif %}>5</option>
+                <option value="6" {% if grupa.oznaka_semestra == 6 %} selected {% endif %}>6</option>
+                <option value="7" {% if grupa.oznaka_semestra == 7 %} selected {% endif %}>7</option>
+                <option value="8" {% if grupa.oznaka_semestra == 8 %} selected {% endif %}>8</option>
+        </select>
+        <br>
+        <label>Kapacitet grupe: </label>
+        <input type="number" name="kapacitet_grupe" value={{ grupa.kapacitet }}><br>
+        <label>Smer grupe: </label>
+        <select name="smer_grupe">
+                <option value="RN" {% if grupa.smer == 'RN' %} selected {% endif %}>RN</option>
+                <option value="RI" {% if grupa.smer == 'RI' %} selected {% endif %}>RI</option>
+        </select>
+        <br>
+        <label>Aktivnost grupe:</label>
+        <select name="aktivnost_grupe">
+                <option value="aktivna" {% if grupa.aktivna %} selected {% endif %}>aktivna</option>
+                <option value="neaktivna" {% if not grupa.aktivna %} selected {% endif %}>neaktivna</option>
+        </select>
+        <br>
+        <label>Semestar: </label>
+        <select name="semestar_id">
+            {% for sem in semestri %}
+            <option value= {{ sem.id }} {% if sem.id == grupa.za_semestar_id %} selected {% endif %}>{{ sem.vrsta }} - {{ sem.skolska_godina_pocetak }}/{{ sem.skolska_godina_kraj }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Predmeti za grupu: </label>
+        <ul style=" height:200px; width: 400px; overflow:hidden; overflow-y:scroll ">
+        {% for predmet in predmeti %}
+            <li><label>{{ predmet.naziv }} </label><input type="checkbox" name='lista' value="{{ predmet.naziv }}" {% if predmet in grupa.predmeti.all %} checked {% endif %}></li>
+            <br>
+        {% endfor %}
+        </ul>
+        <input type="submit" value="Sacuvaj promene">
+    </form>
+</body>
+</html>

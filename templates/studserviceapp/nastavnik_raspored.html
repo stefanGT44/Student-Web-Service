@@ -1,0 +1,147 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raspored</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form action=" {% url 'saveobavestenje' %}" method="post" class="nastavnik_raspored_form">
+        {% csrf_token %}
+
+        <label class="naslov2">Studenti po grupama: </label>
+        <div class="stud_gornji">
+        <div class="select_levo">
+        <label>Godina studija</label>
+        <select id="select_godina" onchange="myFunction()">
+            <option value="sve">sve godine</option>
+            {% for sem in semestri %}
+                <option value="{{ sem.id }}">{{ sem.skolska_godina_pocetak }}/{{ sem.skolska_godina_kraj }}</option>
+            {% endfor %}
+        </select>
+        </div>
+
+
+        <div class="radio_desno">
+        <label>Smer: </label>
+        <div class="radio_div">
+        <div class="radio_button"><input type="radio" name="smer" id="svi" value="svi" onclick="myFunction()" checked><label style="color: rgba(255, 174, 0, 1);">svi</label></div>
+        <div class="radio_button"><input type="radio" name="smer" id="RN" value="RN" onclick="myFunction()"><label style="color: rgba(255, 174, 0, 1);">RN</label></div>
+        <div class="radio_button"><input type="radio" name="smer" id="RI" value="RI" onclick="myFunction()"><label style="color: rgba(255, 174, 0, 1);">RI</label></div>
+        </div>
+        </div>
+        </div>
+
+        <div class="scroll">
+        <ul>
+            <label style="color: rgba(255, 174, 0, 1)"><b>Predmet:</b> </label>
+            <li><label style="color: rgba(255, 174, 0, 1)"><b>Grupe:</b> </label></li>
+        </ul>
+        <br>
+        {% for predmet, skup in mapa.items %}
+            <ul id="{{ predmet }}" value="{{ predmet }}" name="predmet">
+                <label ><b>{{ predmet }}:</b></label>
+                {% for grupa in skup %}
+                    <li id="{{ grupa.id }}" value="{{ grupa.id }}"><a href="{% url 'grupa' grupa.oznaka_grupe %}" style="color: rgb(222, 109, 212);">{{ grupa.oznaka_grupe}}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        </div>
+    </form>
+
+    <script>
+
+        function getGrupaById(id, grupe_json){
+            var i;
+            for (i = 0; i < grupe_json.length; i++){
+                if (grupe_json[i].pk == id){
+                    return grupe_json[i];
+                }
+            }
+        }
+
+        function myFunction() {
+            var select_godina, smer, selected_smer, i, j, izabrana_godina;
+
+            select_godina = document.getElementById('select_godina');
+            izabrana_godina = select_godina.value;
+
+            smer = document.getElementsByName('smer');
+
+            for (i = 0; i < smer.length; i++){
+                if (smer[i].checked){
+                    selected_smer = smer[i].value;
+                }
+            }
+
+            var predmeti, grupe, grupe_json, grupa, counter;
+
+            grupe_json = {{ grupe_json|safe }}
+
+            predmeti = document.getElementsByName('predmet')
+
+            for (i = 0; i < predmeti.length; i++){
+                grupe = predmeti[i].getElementsByTagName('li');
+                counter = 0;
+                for (j = 0; j < grupe.length; j++) {
+                    grupa = getGrupaById(grupe[j].id, grupe_json);
+                    if (selected_smer == 'svi' && izabrana_godina == 'sve'){
+                        grupe[j].style.display = "";
+                    } else if (selected_smer == 'svi'){
+                        if (grupa.fields.semestar == izabrana_godina){
+                            grupe[j].style.display = "";
+                        } else {
+                            grupe[j].style.display = "none";
+                            counter++;
+                        }
+                    } else if (izabrana_godina == 'sve'){
+                        if (grupa.fields.smer == selected_smer){
+                            grupe[j].style.display = "";
+                        } else {
+                            grupe[j].style.display = "none";
+                            counter++;
+                        }
+                    } else {
+                        if (grupa.fields.smer == selected_smer && grupa.fields.semestar == izabrana_godina){
+                            grupe[j].style.display = "";
+                        } else {
+                            grupe[j].style.display = "none";
+                            counter++;
+                        }
+                    }
+                }
+                if (counter == grupe.length){
+                    predmeti[i].style.display = "none";
+                } else {
+                    predmeti[i].style.display = "";
+                }
+            }
+
+        }
+    </script>
+
+</body>
+</html>

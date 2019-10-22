@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student group info</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body onload="myFunction()">
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form action=" {% url 'student_izbor_grupe_info' username %}" method="post">
+        {% csrf_token %}
+        <h1>Informacije izbora grupe</h1>
+        <label>Ime: </label>
+        <input type="text" name="ime" placeholder="Unesite ime"><br>
+        <label>Prezime: </label>
+        <input type="text" name="prezime" placeholder="Unesite prezime"><br><br>
+        <label>Indeks: </label>
+        <input type="text" name="indeks" placeholder="Format: smer/broj indeksa/godina"><br><br>
+
+        <input type="submit" value="Pretrazi"><br><br><br>
+
+        <div id="div">
+            <h2>{{ student.ime }} {{ student.prezime }} {{ student.smer }}/{{ student.broj_indeksa }}/{{ student.godina_upisa }}</h2><br>
+            <label>Semestar: {{ izbor.izabrana_grupa.oznaka_semestra }} - {{ izbor.izabrana_grupa.za_semestar.skolska_godina_pocetak }}/{{ izbor.izabrana_grupa.za_semestar.skolska_godina_kraj }}</label><br>
+            <label>Oznaka izborne grupe: {{ izbor.izabrana_grupa.oznaka_grupe }}</label><br>
+            <label>Kapacitet grupe: {{ izbor.izabrana_grupa.kapacitet }}</label><br>
+            <label>Smer: {{ izbor.izabrana_grupa.smer }}</label><br>
+            <label>Preneti predmeti: </label><br>
+            {% for p in izbor.nepolozeni_predmeti.all %}
+                <label>{{ p.naziv }}</label><br>
+            {% endfor %}
+            <br>
+            <label>Ostvaren broj ESPB poena: {{ izbor.ostvarenoESPB }}</label><br>
+            <label>Upisuje {{ izbor.upisujeESPB }} ESPB bodova</label><br>
+            <label>Nacin placanja: {{ izbor.nacin_placanja }}</label>
+        </div>
+    </form>
+
+    <script>
+        function myFunction(){
+            var div, search;
+            div = document.getElementById('div');
+
+            search = "{{ search }}";
+
+            if (search) {
+                div.style.display = "";
+            } else {
+                div.style.display = "none";
+            }
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grupa {{ grupa.oznaka_grupe }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+    <form class="detalji_grupe_form">
+        <label class="naslov">Grupa {{ grupa.oznaka_grupe }}</label><br>
+
+        <div class="vert_grupa_div">
+
+        <div class="left_grupa_div">
+        <label style="color: rgba(255, 174, 0, 1);">Predmeti: </label>
+        <br>
+        <div>
+        {% for p in predmeti_grupe %}
+            <label>{{ p.naziv }}</label><br>
+        {% endfor %}
+        </div>
+        </div>
+
+        <div class="right_grupa_div">
+        <label style="color: rgba(255, 174, 0, 1);">Studenti</label>
+        <br>
+        <div class="scroll">
+        {% for s in studenti %}
+            <label>{{ s.ime }} </label>
+            <label>{{ s.prezime }} </label>
+            <label>{{ s.smer }}</label><label>{{ s.broj_indeksa }}/</label><label>{{ s.godina_upisa }}</label><br>
+        {% endfor %}
+        </div>
+        </div>
+        </div>
+
+    </form>
+</body>
+</html>

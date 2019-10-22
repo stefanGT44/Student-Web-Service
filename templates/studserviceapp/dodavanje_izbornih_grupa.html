@@ -1,0 +1,168 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodavanje izbornih grupa</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body onload="myFunction()">
+
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <a href="/studserviceapp/authenticate" class="navbar-brand">
+            Studentski servis
+        </a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        {% for naziv, link in funk.items %}
+            <li class="nav-item">
+                {% if naziv == 'Slanje maila' or naziv == 'Izbor grupe' or naziv == 'Unos obavestenja' or naziv == 'Pregled studenata' or naziv == 'Upload slike' or naziv == 'Prikaz celog rasporeda nastave'%}
+                    <a class="nav-link" href="{% url link user %}">{{ naziv }}</a>
+                {% else %}
+                    <a class="nav-link" href="/studserviceapp/{{ link }}">{{ naziv }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+  </div>
+    </nav>
+
+
+    <form action=" {% url 'dodaj_semestar' %}" method="post" class="dodavanje_grupa_gornja">
+        {% csrf_token %}
+        <label class="naslov2">Dodavanje semestra: </label>
+        <label>Vrsta: </label>
+        <select name="vrsta_semestra">
+                <option value="neparni" selected>neparni</option>
+                <option value="parni">parni</option>
+        </select>
+        <label>Skolska godina: </label>
+        <input type="number" name="skolska_godina_semestra" placeholder=" Uneti skolsku godinu...">
+`       <input type="submit" value="Dodaj semestar">
+    </form>
+
+
+
+    <form action=" {% url 'dodaj_izbornu' %}" method="post" class="dodavanje_grupa_donja">
+
+        <div class="vert_div">
+
+        <label class="naslov2">Unos izbornih grupa: </label>
+
+        <label style="color: rgb(88, 204, 123);">{{ message }}</label>
+
+        <div class="wrapper-div">
+
+        <div class="levi_grupa">
+
+        {% csrf_token %}
+        <label>Oznaka grupe: </label>
+        <input type="text" name="oznaka_grupe" placeholder="Uneti oznaku..."><br>
+        <label class="temp_label">Oznaka semestra: </label>
+        <select name="oznaka_semestra" onchange="myFunction()" id="izbor_semestra">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+        </select>
+        <br><br>
+        <label>Kapacitet grupe: </label>
+        <input type="number" name="kapacitet_grupe" placeholder="Uneti kapacitet"><br>
+        <label class="temp_label">Smer grupe: </label>
+        <select name="smer_grupe">
+                <option value="RN" selected>RN</option>
+                <option value="RI">RI</option>
+        </select>
+        <br><br>
+        <label class="temp_label">Aktivnost grupe:</label>
+        <select name="aktivnost_grupe">
+                <option value="aktivna" selected>aktivna</option>
+                <option value="neaktivna">neaktivna</option>
+        </select>
+        <br><br>
+        <label class="temp_label">Semestar: </label>
+        <select name="semestar_id" id="semestar_select">
+            {% for sem in semestri %}
+            <option value= {{ sem.id }}>{{ sem.vrsta }} - {{ sem.skolska_godina_pocetak }}/{{ sem.skolska_godina_kraj }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        </div>
+
+        <div class="desni_grupa">
+
+        <label style="color: rgba(255, 174, 0, 1)">Predmeti za grupu: </label>
+        <div class="scroll">
+        <ul id="predmeti_ul">
+        {% for predmet in predmeti %}
+                        <li><label>{{ predmet.naziv }} </label><input type="checkbox" name='lista' value="{{ predmet.naziv }}"></li>
+        {% endfor %}
+        </ul>
+        </div>
+
+        </div>
+
+        </div>
+
+        <input type="submit" value="Dodaj grupu">
+
+        </div>
+
+    </form>
+
+
+
+    <script>
+        function myFunction(){
+            var select, predmeti, predmeti_ul, li_elem, i, j, semestar_select, semestar_select_children, temp;
+
+            select = document.getElementById('izbor_semestra');
+            console.log(select.value);
+
+            predmeti_ul = document.getElementById('predmeti_ul');
+            li_elem = predmeti_ul.getElementsByTagName("li");
+
+            predmeti = {{ predmeti_json|safe }}
+
+            for (i = 0; i < li_elem.length; i++){
+                if (predmeti[i].fields.semestar_po_programu == select.value){
+                    li_elem[i].style.display = "";
+                } else {
+                    li_elem[i].style.display = "none";
+                }
+            }
+
+            semestar_select = document.getElementById('semestar_select');
+
+            semestar_select_children = semestar_select.getElementsByTagName('option');
+            for (i = 0; i < semestar_select_children.length; i++){
+                temp = semestar_select_children[i].textContent.split(' - ')[0];
+                if (select.value % 2 == 1){
+                    if (temp == 'parni'){
+                        semestar_select_children[i].style.display = "none";
+                    } else {
+                        semestar_select_children[i].style.display = "";
+                        semestar_select.value = semestar_select_children[i].value;
+                    }
+                } else {
+                    if (temp == 'neparni') {
+                        semestar_select_children[i].style.display = "none";
+                    } else {
+                        semestar_select_children[i].style.display = "";
+                        semestar_select.value = semestar_select_children[i].value;
+                    }
+                }
+            }
+
+    }
+    </script>
+
+</body>
+</html>
