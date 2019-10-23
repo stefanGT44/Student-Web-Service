@@ -46,6 +46,5 @@ Students:
 # Sidenote
 This project was done as an assignment as part of the course - Script languages. All the service functionalities were defined in the assignment specification.
 
-# Contributed
-Stefan Ginic
-stefangwars@gmail.com
+## Contriburos
+- Stefan Ginic <stefangwars@gmail.com>
