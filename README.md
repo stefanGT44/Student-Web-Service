@@ -6,12 +6,11 @@ The service is a representation of what a real world student service used by uni
 
 ## Functionalities
 
-There are 4 types of users (roles):
+#### There are 4 types of users (roles):
 * Administrators
 * Secretaries
 * Professors
 * Students
-
 
 Some functionalities are available for all users, such as:
 * Login (simulation - checking if a user exists in the database by the provided username)
@@ -19,7 +18,7 @@ Some functionalities are available for all users, such as:
 * Preview of the bulletin board and downloading attachments
 * Logout
 
-Administrators and secretaries:
+#### Administrators and secretaries:
 * Upload the class schedule of the current active semester (CSV file)
 * Upload the exam schedule (CSV file - invalid rows are shown with the appropriate error message, the user can edit them directly on the web page or upload another file)
 * Post bulletins with or without attachments
@@ -32,13 +31,13 @@ Administrators and secretaries:
 * Preview of all the students grouped by classes
 * Preview of any student profile
 
-Professors:
+#### Professors:
 * Preview of the class schedule for the courses he is teaching
 * Preview of all the classes grouped by courses he is teaching
 * Preview of all the students of a class he is teaching
 * Send emails to a specific group of students with or without attachments (only students attending his lectures - by course or class) - Gmail API
 
-Students:
+#### Students:
 * Preview of the class schedule for courses he is attending
 * Upload profile picture
 * Choose elective class
