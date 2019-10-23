@@ -16,7 +16,6 @@ There are 4 types of users (roles):
 Some functionalities are available for all users, such as:
 * Login (simulation - checking if a user exists in the database by the provided username)
 * Preview of the class schedule of the current active semester
-  * Search by keyword
 * Preview of the bulletin board and download attachments
 * Logout
 
