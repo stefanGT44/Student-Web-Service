@@ -48,5 +48,4 @@ This project was done as an assignment as part of the course - Script languages.
 
 # Contributed
 Stefan Ginic
-
 stefangwars@gmail.com
