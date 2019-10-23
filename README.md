@@ -44,7 +44,7 @@ Students:
 * Choose elective class
 
 ## Sidenote
-This project was done as an assignment as part of the course - Script languages. All the service functionalities were defined in the assignment specification.
+This project was done as an assignment as part of the course - Script languages. All service functionalities were defined in the assignment specification.
 
 ## Contriburos
 - Stefan Ginic <stefangwars@gmail.com>
