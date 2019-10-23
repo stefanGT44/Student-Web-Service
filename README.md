@@ -16,7 +16,7 @@ There are 4 types of users (roles):
 Some functionalities are available for all users, such as:
 * Login (simulation - checking if a user exists in the database by the provided username)
 * Preview of the class schedule of the current active semester
-* Preview of the bulletin board and download attachments
+* Preview of the bulletin board and downloading attachments
 * Logout
 
 Administrators and secretaries:
@@ -36,7 +36,7 @@ Professors:
 * Preview of the class schedule for the courses he is teaching
 * Preview of all the classes grouped by courses he is teaching
 * Preview of all the students of a class he is teaching
-* Send emails to a specific group of students with or without attachments (only students that he is lecturing - by course or class) - Gmail API
+* Send emails to a specific group of students with or without attachments (only students attending his lectures - by course or class) - Gmail API
 
 Students:
 * Preview of the class schedule for courses he is attending
