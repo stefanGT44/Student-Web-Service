@@ -45,5 +45,5 @@ Some functionalities are available to all users:
 ## Sidenote
 This project was an assignment as part of the course - Script languages. All service functionalities were defined in the assignment specifications.
 
-## Contriburos
+## Contributors
 - Stefan Ginic <stefangwars@gmail.com>
