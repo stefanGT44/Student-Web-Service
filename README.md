@@ -26,19 +26,19 @@ Administrators and secretaries:
 * Send emails to a specific group of students with or without attachments (by class, by course, by department or to every student) - Gmail API
 * Adding semesters
 * Adding elective classes
-* Preview of selected elective classes
-* Preview of a selected elective class (list of courses and list of students)
-* Preview of all classes by course
-* Preview of students by class
+* Preview of all the elective classes that were chosen by students (active elective classes)
+* Preview of students and courses of an active elective class
+* Preview of all the classes grouped by courses
+* Preview of all the students grouped by classes
 * Preview of any student profile
 
 Professors:
-* Preview of the class schedule for his lectures
-* Preview of classes attending his lectures, by course
-* Preview of students attending his lectures
+* Preview of the class schedule for the courses he is teaching
+* Preview of all the classes grouped by courses he is teaching
+* Preview of all the students of a class he is teaching
 * Send emails to a specific group of students with or without attachments (only students that he is lecturing - by course or class) - Gmail API
 
 Students:
-* Preview of the class schedule for his class
+* Preview of the class schedule for courses he is attending
 * Upload profile picture
 * Choose elective class
