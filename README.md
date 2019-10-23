@@ -42,3 +42,10 @@ Students:
 * Preview of the class schedule for courses he is attending
 * Upload profile picture
 * Choose elective class
+
+# Sidenote
+This project was done as an assignment as part of the course - Script languages. All the service functionalities were defined in the assignment specification.
+
+# Contributed
+Stefan Ginic
+stefangwars@gmail.com
