@@ -34,11 +34,11 @@ Administrators and secretaries:
 
 Professors:
 * Preview of the class schedule for his lectures
-* Preview of his classes by course
+* Preview of classes attending his lectures, by course
 * Preview of students attending his lectures
 * Send emails to a specific group of students with or without attachments (only students that he is lecturing - by course or class) - Gmail API
 
 Students:
-* Preview of the class schedule for his lectures
+* Preview of the class schedule for his class
 * Upload profile picture
 * Choose elective class
