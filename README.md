@@ -12,7 +12,7 @@ The service is a representation of what a real world student service used by uni
 * Professors
 * Students
 
-Some functionalities are available for all users, such as:
+Some functionalities are available to all users:
 * Login (simulation - checking if a user exists in the database by the provided username)
 * Preview of the class schedule of the current active semester
 * Preview of the bulletin board and downloading attachments
@@ -43,7 +43,7 @@ Some functionalities are available for all users, such as:
 * Choose elective class
 
 ## Sidenote
-This project was done as an assignment as part of the course - Script languages. All service functionalities were defined in the assignment specification.
+This project was an assignment as part of the course - Script languages. All service functionalities were defined in the assignment specifications.
 
 ## Contriburos
 - Stefan Ginic <stefangwars@gmail.com>
