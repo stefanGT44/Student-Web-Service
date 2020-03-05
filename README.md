@@ -12,7 +12,7 @@ The service is a representation of what a real world student service used by uni
 * Professors
 * Students
 
-Some functionalities are available to all users:
+Functionalities available for all users:
 * Login (simulation - checking if a user exists in the database by the provided username)
 * Preview of the class schedule of the current active semester
 * Preview of the bulletin board and downloading attachments
