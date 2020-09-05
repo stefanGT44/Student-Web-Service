@@ -43,7 +43,7 @@ Functionalities available for all users:
 * Choose elective class
 
 ## Sidenote
-This project was an assignment as part of the course - Script languages in the 5th semester at the Faculty of Computer Science in Belgrade. All service functionalities were defined in the assignment specifications.
+This project was an assignment as part of the course - Script languages during the 5th semester at the Faculty of Computer Science in Belgrade. All service functionalities were defined in the assignment specifications.
 
 ## Contributors
 - Stefan Ginic - <stefangwars@gmail.com>
